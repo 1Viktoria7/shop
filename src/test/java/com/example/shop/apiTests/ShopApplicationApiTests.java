@@ -18,6 +18,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.tuple;
 import static org.hamcrest.Matchers.equalTo;
 
 public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
+    //Methods
     @BeforeEach
     public void setUp() {
         requestSpec = given();

@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class UnitTestConfig {
+    //Methods
     @Test
     @DisplayName("Получени значений в правильной конфигурации")
     void ShouldGetPropsWithCorrectConfiguration() {
