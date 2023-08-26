@@ -10,23 +10,24 @@ import io.restassured.specification.ResponseSpecification;
 import org.junit.jupiter.api.BeforeEach;
 
 public class ShopApplicationApiBaseTests extends SupportingClass {
+    //Variables
     RequestSpecification requestSpec;
     ResponseSpecification responseGetShopClass;
     ResponseSpecification responseSpec = new ResponseSpecBuilder().expectStatusCode(200).build();
     static Faker faker = new Faker();
+    public final static String mainUrl = "http://localhost:4000/";
+    public final static String pathShops = "shops/";
+    public final static String pathAddShops = "shops/add";
+    public final static String pathAllShops = "shops/all";
+    public final static String pathGetShopById = "shops/";
+    public final static String pathDeleteShopById = "delete/";
 
+    //Methods
     @BeforeEach
     public void setBase() {
-        RestAssured.baseURI = MAIN_URL;
+        RestAssured.baseURI = mainUrl;
         faker = new Faker();
     }
-
-    public final static String MAIN_URL = "http://localhost:4000/";
-    public final static String PATH_SHOPS = "shops/";
-    public final static String PATH_GET_ADD_SHOPS = "shops/add";
-    public final static String PATH_GET_ALL_SHOPS = "shops/all";
-    public final static String PATH_GET_SHOP_ID = "shops/";
-    public final static String PATH_DELETE_SHOP_ID = "delete/";
 
     @BeforeEach
     public void setup() {

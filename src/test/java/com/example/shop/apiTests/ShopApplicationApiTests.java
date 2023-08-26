@@ -3,18 +3,15 @@ package com.example.shop.apiTests;
 import com.example.shop.apiTests.testObjects.AddShopClass;
 import com.example.shop.apiTests.testObjects.GetShopClass;
 import io.qameta.allure.Feature;
-import io.restassured.RestAssured;
-import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.common.mapper.TypeRef;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
+import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.common.mapper.TypeRef;
+import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 import static org.assertj.core.api.AssertionsForClassTypes.tuple;
@@ -37,7 +34,7 @@ public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
         given()
                 .body(data)
                 .when()
-                .post(PATH_GET_ADD_SHOPS)
+                .post(pathAddShops)
                 .then();
     }
 
@@ -48,7 +45,7 @@ public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
         requestSpec = RestAssured.given();
         List<GetShopClass> response = requestSpec
                 .param("shopPublic", "true")
-                .get(PATH_GET_ALL_SHOPS)
+                .get(pathAllShops)
                 .as(new TypeRef<>() {});
         Assertions.assertThat(response)
                 .extracting(
@@ -57,8 +54,8 @@ public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
                         GetShopClass::isShopPublic
                 )
                 .contains(
-                        tuple(11752L,
-                                "Create New Online shop№1",
+                        tuple(15953L,
+                                "ShopController№1",
                                 true)
                 );
     }
@@ -69,7 +66,7 @@ public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
     public void ShouldGetShopNameById() {
         requestSpec = RestAssured.given();
         requestSpec
-                .get(PATH_GET_SHOP_ID + 7952 )
+                .get(pathGetShopById + 7952 )
                 .then()
                 .spec(responseGetShopClass)
                 .body("shopName", equalTo("Online Store №1"));
@@ -79,7 +76,7 @@ public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
     @Feature("Онлайн Магазин")
     @DisplayName("Получение всех магазинов")
     public void ShouldGetAllShops() {
-        Response response1 = given().get(PATH_GET_ALL_SHOPS);
+        Response response1 = given().get(pathAllShops);
         Assertions.assertThat(response1)
                 .extracting(
                         Response::getStatusCode,
@@ -96,7 +93,7 @@ public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
     @DisplayName("Удаление магазина по id")
     public void ShouldDeleteShop() {
         when()
-                .delete(PATH_DELETE_SHOP_ID + 8752)
+                .delete(pathDeleteShopById + 8752)
                 .then();
     }
 }

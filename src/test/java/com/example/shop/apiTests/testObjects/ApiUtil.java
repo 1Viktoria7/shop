@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ApiUtil extends ShopApplicationApiBaseTests {
-    private final static String baseUrl = MAIN_URL;
+    private final static String baseUrl = mainUrl;
 
     public static Object createOnlineShopByApi() throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -29,7 +29,7 @@ public class ApiUtil extends ShopApplicationApiBaseTests {
                 ));
 
         Request postRequest = new Request.Builder()
-                .url(MAIN_URL + "/api/createOnlineShop")
+                .url(mainUrl + "/api/createOnlineShop")
                 .post(formBody)
                 .build();
 
