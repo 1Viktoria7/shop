@@ -54,7 +54,7 @@ public class ShopApplicationApiTests extends ShopApplicationApiBaseTests {
                         GetShopClass::isShopPublic
                 )
                 .contains(
-                        tuple(15953L,
+                        tuple(16203L,
                                 "ShopController№1",
                                 true)
                 );
