@@ -11,8 +11,10 @@ import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ShopApplicationsTestsUI {
+    //Variables
     BaseShopApplicationsTestsUI baseShopApplicationsTestsUI = new BaseShopApplicationsTestsUI();
 
+    //Methods
     @BeforeEach
     public void setSelenide() throws InterruptedException {
         System.setProperty("chromeoptions.args", "--remote-allow-origins=*");
